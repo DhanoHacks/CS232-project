@@ -1,4 +1,4 @@
-Repo for CS232 Project - Branch predictors for Graph Analytics
+Repo for CS232 Project - Memory/Cache hierarchy optimizations for Graph Analytics
 Members:
 * Dhananjay Raman
 * Adyasha Patra
