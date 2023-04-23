@@ -1,0 +1,80 @@
+
+*** ChampSim Multicore Out-of-Order Simulator ***
+
+Warmup Instructions: 30000000
+Simulation Instructions: 30000000
+Number of CPUs: 1
+LLC sets: 2048
+LLC ways: 16
+Off-chip DRAM Size: 4096 MB Channels: 1 Width: 64-bit Data Rate: 3200 MT/s
+
+CPU 0 runs ../traces//cc-14.trace.gz
+CPU 0 GSHARE branch predictor
+Heartbeat CPU 0 instructions: 10000003 cycles: 3292831 heartbeat IPC: 3.0369 cumulative IPC: 3.0369 (Simulation time: 0 hr 0 min 10 sec) 
+Heartbeat CPU 0 instructions: 20000001 cycles: 6634088 heartbeat IPC: 2.99289 cumulative IPC: 3.01473 (Simulation time: 0 hr 0 min 21 sec) 
+Heartbeat CPU 0 instructions: 30000002 cycles: 9987612 heartbeat IPC: 2.98194 cumulative IPC: 3.00372 (Simulation time: 0 hr 0 min 32 sec) 
+
+Warmup complete CPU 0 instructions: 30000002 cycles: 9987612 (Simulation time: 0 hr 0 min 32 sec) 
+
+Heartbeat CPU 0 instructions: 40000003 cycles: 54242644 heartbeat IPC: 0.225963 cumulative IPC: 0.225963 (Simulation time: 0 hr 0 min 46 sec) 
+Heartbeat CPU 0 instructions: 50000003 cycles: 98352981 heartbeat IPC: 0.226704 cumulative IPC: 0.226333 (Simulation time: 0 hr 0 min 59 sec) 
+Heartbeat CPU 0 instructions: 60000002 cycles: 141815832 heartbeat IPC: 0.230082 cumulative IPC: 0.227569 (Simulation time: 0 hr 1 min 13 sec) 
+Finished CPU 0 instructions: 30000000 cycles: 131828220 cumulative IPC: 0.227569 (Simulation time: 0 hr 1 min 13 sec) 
+
+ChampSim completed all CPUs
+
+Region of Interest Statistics
+
+CPU 0 cumulative IPC: 0.227569 instructions: 30000000 cycles: 131828220
+L1D TOTAL     ACCESS:    6962281  HIT:    4770899  MISS:    2191382
+L1D LOAD      ACCESS:    6857917  HIT:    4666535  MISS:    2191382
+L1D RFO       ACCESS:     104364  HIT:     104364  MISS:          0
+L1D PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
+L1D WRITEBACK ACCESS:          0  HIT:          0  MISS:          0
+L1D PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
+L1D AVERAGE MISS LATENCY: 94.2696 cycles
+L1I TOTAL     ACCESS:    4638035  HIT:    4638035  MISS:          0
+L1I LOAD      ACCESS:    4638035  HIT:    4638035  MISS:          0
+L1I RFO       ACCESS:          0  HIT:          0  MISS:          0
+L1I PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
+L1I WRITEBACK ACCESS:          0  HIT:          0  MISS:          0
+L1I PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
+L1I AVERAGE MISS LATENCY: -nan cycles
+L2C TOTAL     ACCESS:    2278732  HIT:     746830  MISS:    1531902
+L2C LOAD      ACCESS:    2191382  HIT:     659500  MISS:    1531882
+L2C RFO       ACCESS:          0  HIT:          0  MISS:          0
+L2C PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
+L2C WRITEBACK ACCESS:      87350  HIT:      87330  MISS:         20
+L2C PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
+L2C AVERAGE MISS LATENCY: 113.048 cycles
+LLC TOTAL     ACCESS:    1619033  HIT:     777246  MISS:     841787
+LLC LOAD      ACCESS:    1531882  HIT:     732088  MISS:     799794
+LLC RFO       ACCESS:          0  HIT:          0  MISS:          0
+LLC PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
+LLC WRITEBACK ACCESS:      87151  HIT:      45158  MISS:      41993
+LLC PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
+LLC AVERAGE MISS LATENCY: 151.078 cycles
+Major fault: 0 Minor fault: 5185
+
+DRAM Statistics
+ CHANNEL 0
+ RQ ROW_BUFFER_HIT:     214889  ROW_BUFFER_MISS:     584905
+ DBUS_CONGESTED:     167437
+ WQ ROW_BUFFER_HIT:      28973  ROW_BUFFER_MISS:      17846  FULL:          0
+
+ AVG_CONGESTED_CYCLE: 5
+
+CPU 0 Branch Prediction Accuracy: 90.4883% MPKI: 19.0497 Average ROB Occupancy at Mispredict: 28.1113
+
+Branch types
+NOT_BRANCH: 23991655 79.9722%
+BRANCH_DIRECT_JUMP: 0 0%
+BRANCH_INDIRECT: 0 0%
+BRANCH_CONDITIONAL: 6008326 20.0278%
+BRANCH_DIRECT_CALL: 0 0%
+BRANCH_INDIRECT_CALL: 0 0%
+BRANCH_RETURN: 0 0%
+BRANCH_OTHER: 0 0%
+
+
+gzip: stdout: Broken pipe
