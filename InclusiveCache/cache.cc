@@ -53,7 +53,7 @@ void CACHE::handle_fill()
         else
             way = find_victim(fill_cpu, MSHR.entry[mshr_index].instr_id, set, block[set], MSHR.entry[mshr_index].ip, MSHR.entry[mshr_index].full_addr, MSHR.entry[mshr_index].type);
 
-        back_invalidate(cache_type, MSHR.entry[mshr_index].address, set, way);
+        back_invalidate(cache_type, block[set][way].address, set, way);
 
 #ifdef LLC_BYPASS
         if ((cache_type == IS_LLC) && (way == LLC_WAY)) { // this is a bypass that does not fill the LLC
@@ -1210,7 +1210,7 @@ int CACHE::invalidate_entry(uint64_t inval_addr)
 bool CACHE::is_there(uint64_t addr){
   uint32_t set = get_set(addr);
   for(uint32_t way=0; way<NUM_WAY; way++){
-    if(block[set][way].tag == addr){
+    if(block[set][way].valid && block[set][way].tag == addr){
       return true;
     }
   }
