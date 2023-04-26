@@ -2,18 +2,18 @@ import matplotlib.pyplot as plt
 import re
 import numpy as np
 
-# varying LLC WAY
-def plot_llc_way():
-    llcways=[2048,4096,8192,16384]
+# varying LLC SIZE
+def plot_llc_size():
+    llcsizes=[2048,4096,8192,16384,0]
     traces=['bfs-14.trace.gz','cc-14.trace.gz','sssp-14.trace.gz']
     baselines=np.zeros(shape=(1,len(traces)))
-    speedups=np.zeros(shape=(len(traces),len(llcways)))
-    mpkis=np.zeros(shape=(len(traces),len(llcways)))
-    for i in range(len(llcways)):
-        way=llcways[i]
+    speedups=np.zeros(shape=(len(traces),len(llcsizes)))
+    mpkis=np.zeros(shape=(len(traces),len(llcsizes)))
+    for i in range(len(llcsizes)):
+        size=llcsizes[i]
         for j in range(len(traces)):
             trace=traces[j]
-            with open(f"llc_way_{way}/{trace}-gshare-no-no-no-no-lru-1core.txt","r") as f:
+            with open(f"llc_size_{size}/{trace}-gshare-no-no-no-no-lru-1core.txt","r") as f:
                 data = f.read()
             ipc = float(re.findall("CPU 0 cumulative IPC: [0-9\.]+",data)[0].split(" ")[-1])
             instructions = int(re.findall("CPU 0 cumulative IPC: [0-9\.]+ instructions: [0-9\.]+",data)[0].split(" ")[-1])
@@ -27,41 +27,41 @@ def plot_llc_way():
             mpkis[j,i] = mpki
 
     x_axis = np.arange(len(traces))
-    for i in range(len(llcways)):
-        plt.bar(x_axis-0.3+0.2*i, speedups[:,i], 0.2, label=f"LLC WAY = {llcways[i]}")
+    for i in range(len(llcsizes)):
+        plt.bar(x_axis-0.3+0.15*i, speedups[:,i], 0.15, label=f"LLC SIZE = {llcsizes[i]}")
     plt.xticks(x_axis,traces)
     plt.ylabel("Speedup")
     plt.xlabel("Trace")
-    plt.title("Speedup vs LLC WAY for various trace")
+    plt.title("Speedup vs LLC SIZE for various trace")
     plt.legend()
-    plt.savefig("llc_ways_speedup.png")
+    plt.savefig("llc_sizes_speedup.png")
     plt.show()
     plt.close()
 
-    for i in range(len(llcways)):
-        plt.bar(x_axis-0.3+0.2*i, mpkis[:,i], 0.2, label=f"LLC WAY = {llcways[i]}")
+    for i in range(len(llcsizes)-1):
+        plt.bar(x_axis-0.3+0.2*i, mpkis[:,i], 0.2, label=f"LLC SIZE = {llcsizes[i]}")
     plt.xticks(x_axis,traces)
     plt.ylabel("MPKI")
     plt.xlabel("Trace")
-    plt.title("MPKI vs LLC WAY for various trace")
+    plt.title("MPKI vs LLC SIZE for various trace")
     plt.legend()
-    plt.savefig("llc_ways_mpki.png")
+    plt.savefig("llc_sizes_mpki.png")
     plt.show()
     plt.close()
 
 
-# varying L2 WAY
-def plot_l2_way():
-    l2ways=[1024,2048,4096,8192]
+# varying L2 SIZE
+def plot_l2_size():
+    l2sizes=[1024,2048,4096,8192,0]
     traces=['bfs-14.trace.gz','cc-14.trace.gz','sssp-14.trace.gz']
     baselines=np.zeros(shape=(1,len(traces)))
-    speedups=np.zeros(shape=(len(traces),len(l2ways)))
-    mpkis=np.zeros(shape=(len(traces),len(l2ways)))
-    for i in range(len(l2ways)):
-        way=l2ways[i]
+    speedups=np.zeros(shape=(len(traces),len(l2sizes)))
+    mpkis=np.zeros(shape=(len(traces),len(l2sizes)))
+    for i in range(len(l2sizes)):
+        size=l2sizes[i]
         for j in range(len(traces)):
             trace=traces[j]
-            with open(f"l2_way_{way}/{trace}-gshare-no-no-no-no-lru-1core.txt","r") as f:
+            with open(f"l2_size_{size}/{trace}-gshare-no-no-no-no-lru-1core.txt","r") as f:
                 data = f.read()
             ipc = float(re.findall("CPU 0 cumulative IPC: [0-9\.]+",data)[0].split(" ")[-1])
             instructions = int(re.findall("CPU 0 cumulative IPC: [0-9\.]+ instructions: [0-9\.]+",data)[0].split(" ")[-1])
@@ -75,25 +75,25 @@ def plot_l2_way():
             mpkis[j,i] = mpki
 
     x_axis = np.arange(len(traces))
-    for i in range(len(l2ways)):
-        plt.bar(x_axis-0.3+0.2*i, speedups[:,i], 0.2, label=f"L2 WAY = {l2ways[i]}")
+    for i in range(len(l2sizes)):
+        plt.bar(x_axis-0.3+0.15*i, speedups[:,i], 0.15, label=f"L2 SIZE = {l2sizes[i]}")
     plt.xticks(x_axis,traces)
     plt.ylabel("Speedup")
     plt.xlabel("Trace")
-    plt.title("Speedup vs L2 WAY for various trace")
+    plt.title("Speedup vs L2 SIZE for various trace")
     plt.legend()
-    plt.savefig("l2_ways_speedup.png")
+    plt.savefig("l2_sizes_speedup.png")
     plt.show()
     plt.close()
 
-    for i in range(len(l2ways)):
-        plt.bar(x_axis-0.3+0.2*i, mpkis[:,i], 0.2, label=f"L2 WAY = {l2ways[i]}")
+    for i in range(len(l2sizes)-1):
+        plt.bar(x_axis-0.3+0.2*i, mpkis[:,i], 0.2, label=f"L2 SIZE = {l2sizes[i]}")
     plt.xticks(x_axis,traces)
     plt.ylabel("MPKI")
     plt.xlabel("Trace")
-    plt.title("MPKI vs L2 WAY for various trace")
+    plt.title("MPKI vs L2 SIZE for various trace")
     plt.legend()
-    plt.savefig("l2_ways_mpki.png")
+    plt.savefig("l2_sizes_mpki.png")
     plt.show()
     plt.close()
 
@@ -193,4 +193,4 @@ def plot_incl():
     plt.show()
     plt.close()
 
-plot_incl()
+plot_l2_size()
