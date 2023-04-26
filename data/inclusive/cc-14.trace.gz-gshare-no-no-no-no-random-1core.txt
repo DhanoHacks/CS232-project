@@ -1,0 +1,80 @@
+
+*** ChampSim Multicore Out-of-Order Simulator ***
+
+Warmup Instructions: 30000000
+Simulation Instructions: 30000000
+Number of CPUs: 1
+LLC sets: 2048
+LLC ways: 16
+Off-chip DRAM Size: 4096 MB Channels: 1 Width: 64-bit Data Rate: 3200 MT/s
+
+CPU 0 runs ../traces//cc-14.trace.gz
+CPU 0 GSHARE branch predictor
+Heartbeat CPU 0 instructions: 10000003 cycles: 3293200 heartbeat IPC: 3.03656 cumulative IPC: 3.03656 (Simulation time: 0 hr 0 min 11 sec) 
+Heartbeat CPU 0 instructions: 20000001 cycles: 6635662 heartbeat IPC: 2.99181 cumulative IPC: 3.01402 (Simulation time: 0 hr 0 min 25 sec) 
+Heartbeat CPU 0 instructions: 30000003 cycles: 9990565 heartbeat IPC: 2.98071 cumulative IPC: 3.00283 (Simulation time: 0 hr 0 min 38 sec) 
+
+Warmup complete CPU 0 instructions: 30000003 cycles: 9990565 (Simulation time: 0 hr 0 min 38 sec) 
+
+Heartbeat CPU 0 instructions: 40000003 cycles: 58128470 heartbeat IPC: 0.207737 cumulative IPC: 0.207737 (Simulation time: 0 hr 0 min 57 sec) 
+Heartbeat CPU 0 instructions: 50000003 cycles: 105980025 heartbeat IPC: 0.20898 cumulative IPC: 0.208356 (Simulation time: 0 hr 1 min 16 sec) 
+Heartbeat CPU 0 instructions: 60000000 cycles: 153226353 heartbeat IPC: 0.211657 cumulative IPC: 0.209445 (Simulation time: 0 hr 1 min 32 sec) 
+Finished CPU 0 instructions: 30000001 cycles: 143235789 cumulative IPC: 0.209445 (Simulation time: 0 hr 1 min 32 sec) 
+
+ChampSim completed all CPUs
+
+Region of Interest Statistics
+
+CPU 0 cumulative IPC: 0.209445 instructions: 30000001 cycles: 143235789
+L1D TOTAL     ACCESS:    6985301  HIT:    4792184  MISS:    2193117
+L1D LOAD      ACCESS:    6880937  HIT:    4687868  MISS:    2193069
+L1D RFO       ACCESS:     104364  HIT:     104316  MISS:         48
+L1D PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
+L1D WRITEBACK ACCESS:          0  HIT:          0  MISS:          0
+L1D PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
+L1D AVERAGE MISS LATENCY: 96.4679 cycles
+L1I TOTAL     ACCESS:    4649353  HIT:    4648987  MISS:        366
+L1I LOAD      ACCESS:    4649353  HIT:    4648987  MISS:        366
+L1I RFO       ACCESS:          0  HIT:          0  MISS:          0
+L1I PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
+L1I WRITEBACK ACCESS:          0  HIT:          0  MISS:          0
+L1I PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
+L1I AVERAGE MISS LATENCY: 64.1011 cycles
+L2C TOTAL     ACCESS:    2280854  HIT:     740662  MISS:    1540192
+L2C LOAD      ACCESS:    2193435  HIT:     654078  MISS:    1539357
+L2C RFO       ACCESS:         48  HIT:          0  MISS:         48
+L2C PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
+L2C WRITEBACK ACCESS:      87371  HIT:      86584  MISS:        787
+L2C PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
+L2C AVERAGE MISS LATENCY: 115.678 cycles
+LLC TOTAL     ACCESS:    1626558  HIT:     802818  MISS:     823740
+LLC LOAD      ACCESS:    1539357  HIT:     726596  MISS:     812761
+LLC RFO       ACCESS:         48  HIT:          0  MISS:         48
+LLC PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
+LLC WRITEBACK ACCESS:      87153  HIT:      76222  MISS:      10931
+LLC PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
+LLC AVERAGE MISS LATENCY: 160.174 cycles
+Major fault: 0 Minor fault: 5185
+
+DRAM Statistics
+ CHANNEL 0
+ RQ ROW_BUFFER_HIT:     156109  ROW_BUFFER_MISS:     656689
+ DBUS_CONGESTED:     139604
+ WQ ROW_BUFFER_HIT:      44778  ROW_BUFFER_MISS:      40598  FULL:          0
+
+ AVG_CONGESTED_CYCLE: 5
+
+CPU 0 Branch Prediction Accuracy: 90.4883% MPKI: 19.0497 Average ROB Occupancy at Mispredict: 28.3588
+
+Branch types
+NOT_BRANCH: 23991669 79.9722%
+BRANCH_DIRECT_JUMP: 0 0%
+BRANCH_INDIRECT: 0 0%
+BRANCH_CONDITIONAL: 6008329 20.0278%
+BRANCH_DIRECT_CALL: 0 0%
+BRANCH_INDIRECT_CALL: 0 0%
+BRANCH_RETURN: 0 0%
+BRANCH_OTHER: 0 0%
+
+
+gzip: stdout: Broken pipe

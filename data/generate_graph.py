@@ -103,8 +103,8 @@ def plot_l2_size():
 
 
 # varying REPLACEMENT POLICY
-def plot_repl():
-    repls=["lru","random","lfu","fifo","mru","srrip","drrip"]
+def plot_repl(inclusivity):
+    repls=np.array(["lru","lfu","random","fifo","mru","srrip","drrip","ship"])
     traces=['bfs-14.trace.gz','cc-14.trace.gz','sssp-14.trace.gz']
     baselines=np.zeros(shape=(1,len(traces)))
     speedups=np.zeros(shape=(len(traces),len(repls)))
@@ -113,7 +113,7 @@ def plot_repl():
         policy=repls[i]
         for j in range(len(traces)):
             trace=traces[j]
-            with open(f"repl_policies/{trace}-gshare-no-no-no-no-{policy}-1core.txt","r") as f:
+            with open(f"{inclusivity.lower()}/{trace}-gshare-no-no-no-no-{policy}-1core.txt","r") as f:
                 data = f.read()
             ipc = float(re.findall("CPU 0 cumulative IPC: [0-9\.]+",data)[0].split(" ")[-1])
             instructions = int(re.findall("CPU 0 cumulative IPC: [0-9\.]+ instructions: [0-9\.]+",data)[0].split(" ")[-1])
@@ -128,26 +128,28 @@ def plot_repl():
 
     x_axis = np.arange(len(traces))
     plt.figure(figsize=(12,8))
+    # print(speedups)
     for i in range(len(repls)):
-        plt.bar(x_axis-0.33+0.11*i, speedups[:,i], 0.11, label=repls[i])
+        plt.bar(x_axis-0.35+0.1*i, np.transpose(np.transpose(speedups)[speedups[1, :].argsort()])[:,i], 0.1, label=repls[speedups[1, :].argsort()][i])
     plt.xticks(x_axis,traces)
     plt.ylabel("Speedup")
     plt.xlabel("Trace")
     plt.ylim((0.6,1.2))
-    plt.title("Speedup vs Replacement Policy for various trace")
+    plt.title(f"Speedup vs Replacement Policy for various traces using {inclusivity} Cache Hierarchy")
     plt.legend(loc='upper left')
-    plt.savefig("figures/replacement_policies_speedup.png")
+    plt.savefig(f"figures/{inclusivity.lower()}_speedup.png")
     plt.show()
     plt.close()
 
+    plt.figure(figsize=(12,8))
     for i in range(len(repls)):
-        plt.bar(x_axis-0.39+0.13/2+0.13*i, mpkis[:,i], 0.13, label=repls[i])
+        plt.bar(x_axis-0.35+0.1*i, np.flip(np.transpose(np.transpose(mpkis)[mpkis[1, :].argsort()]))[:,i], 0.1, label=np.flip(repls[mpkis[1, :].argsort()])[i])
     plt.xticks(x_axis,traces)
     plt.ylabel("MPKI")
     plt.xlabel("Trace")
-    plt.title("MPKI vs Replacement Policy for various trace")
+    plt.title(f"MPKI vs Replacement Policy for various traces using {inclusivity} Cache Hierarchy")
     plt.legend()
-    plt.savefig("figures/replacement_policies_mpki.png")
+    plt.savefig(f"figures/{inclusivity.lower()}_mpki.png")
     plt.show()
     plt.close()
 
@@ -250,4 +252,6 @@ def plot_block():
     plt.show()
     plt.close()
 
-plot_block()
+plot_repl("Inclusive")
+plot_repl("NonInclusive")
+plot_repl("Exclusive")

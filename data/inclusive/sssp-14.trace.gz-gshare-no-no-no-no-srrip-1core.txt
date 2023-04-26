@@ -1,0 +1,81 @@
+
+*** ChampSim Multicore Out-of-Order Simulator ***
+
+Warmup Instructions: 30000000
+Simulation Instructions: 30000000
+Number of CPUs: 1
+LLC sets: 2048
+LLC ways: 16
+Off-chip DRAM Size: 4096 MB Channels: 1 Width: 64-bit Data Rate: 3200 MT/s
+
+CPU 0 runs ../traces//sssp-14.trace.gz
+CPU 0 GSHARE branch predictor
+Initialize SRRIP state
+Heartbeat CPU 0 instructions: 10000000 cycles: 3726134 heartbeat IPC: 2.68375 cumulative IPC: 2.68375 (Simulation time: 0 hr 0 min 13 sec) 
+Heartbeat CPU 0 instructions: 20000003 cycles: 7672125 heartbeat IPC: 2.53422 cumulative IPC: 2.60684 (Simulation time: 0 hr 0 min 28 sec) 
+Heartbeat CPU 0 instructions: 30000001 cycles: 11797590 heartbeat IPC: 2.42397 cumulative IPC: 2.54289 (Simulation time: 0 hr 0 min 43 sec) 
+
+Warmup complete CPU 0 instructions: 30000001 cycles: 11797590 (Simulation time: 0 hr 0 min 43 sec) 
+
+Heartbeat CPU 0 instructions: 40000003 cycles: 46701506 heartbeat IPC: 0.286501 cumulative IPC: 0.286501 (Simulation time: 0 hr 0 min 59 sec) 
+Heartbeat CPU 0 instructions: 50000000 cycles: 79728743 heartbeat IPC: 0.30278 cumulative IPC: 0.294416 (Simulation time: 0 hr 1 min 16 sec) 
+Heartbeat CPU 0 instructions: 60000002 cycles: 112372291 heartbeat IPC: 0.306339 cumulative IPC: 0.298286 (Simulation time: 0 hr 1 min 31 sec) 
+Finished CPU 0 instructions: 30000001 cycles: 100574701 cumulative IPC: 0.298286 (Simulation time: 0 hr 1 min 31 sec) 
+
+ChampSim completed all CPUs
+
+Region of Interest Statistics
+
+CPU 0 cumulative IPC: 0.298286 instructions: 30000001 cycles: 100574701
+L1D TOTAL     ACCESS:    7042805  HIT:    5497533  MISS:    1545272
+L1D LOAD      ACCESS:    6391673  HIT:    4971446  MISS:    1420227
+L1D RFO       ACCESS:     651132  HIT:     526087  MISS:     125045
+L1D PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
+L1D WRITEBACK ACCESS:          0  HIT:          0  MISS:          0
+L1D PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
+L1D AVERAGE MISS LATENCY: 101.131 cycles
+L1I TOTAL     ACCESS:    3240637  HIT:    3234609  MISS:       6028
+L1I LOAD      ACCESS:    3240637  HIT:    3234609  MISS:       6028
+L1I RFO       ACCESS:          0  HIT:          0  MISS:          0
+L1I PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
+L1I WRITEBACK ACCESS:          0  HIT:          0  MISS:          0
+L1I PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
+L1I AVERAGE MISS LATENCY: 57.9594 cycles
+L2C TOTAL     ACCESS:    1927758  HIT:     724697  MISS:    1203061
+L2C LOAD      ACCESS:    1426230  HIT:     265779  MISS:    1160451
+L2C RFO       ACCESS:     125041  HIT:      85014  MISS:      40027
+L2C PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
+L2C WRITEBACK ACCESS:     376487  HIT:     373904  MISS:       2583
+L2C PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
+L2C AVERAGE MISS LATENCY: 110.318 cycles
+LLC TOTAL     ACCESS:    1449183  HIT:     833679  MISS:     615504
+LLC LOAD      ACCESS:    1160450  HIT:     581199  MISS:     579251
+LLC RFO       ACCESS:      40027  HIT:      12028  MISS:      27999
+LLC PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
+LLC WRITEBACK ACCESS:     248706  HIT:     240452  MISS:       8254
+LLC PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
+LLC AVERAGE MISS LATENCY: 156.896 cycles
+Major fault: 0 Minor fault: 8845
+
+DRAM Statistics
+ CHANNEL 0
+ RQ ROW_BUFFER_HIT:     131754  ROW_BUFFER_MISS:     475492
+ DBUS_CONGESTED:     114791
+ WQ ROW_BUFFER_HIT:     100616  ROW_BUFFER_MISS:      82758  FULL:          0
+
+ AVG_CONGESTED_CYCLE: 6
+
+CPU 0 Branch Prediction Accuracy: 94.5585% MPKI: 8.0298 Average ROB Occupancy at Mispredict: 81.644
+
+Branch types
+NOT_BRANCH: 25572668 85.2422%
+BRANCH_DIRECT_JUMP: 1258058 4.19353%
+BRANCH_INDIRECT: 0 0%
+BRANCH_CONDITIONAL: 3167393 10.558%
+BRANCH_DIRECT_CALL: 765 0.00255%
+BRANCH_INDIRECT_CALL: 0 0%
+BRANCH_RETURN: 765 0.00255%
+BRANCH_OTHER: 0 0%
+
+
+gzip: stdout: Broken pipe
