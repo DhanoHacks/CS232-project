@@ -1,3 +1,4 @@
+#!/bin/bash
 rm results_30M/*
 # for way in {"drrip","srrip","lru","random","lfu","fifo","mru","ship"}
 sed -i 's/#define .*HIERARCHY/#define NONINCLUSIVE_CACHE_HIERARCHY/' inc/champsim.h

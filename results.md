@@ -1,0 +1,13 @@
+Results:
+![L2 Sizes - Speedup Comparison](data/figures/l2_sizes_speedup.png)
+![L2 Sizes - MPKI Comparison](data/figures/l2_sizes_mpki.png)
+![LLC Sizes - Speedup Comparison](data/figures/llc_sizes_speedup.png)
+![LLC Sizes - MPKI Comparison](data/figures/llc_sizes_mpki.png)
+![Block Sizes - Speedup Comparison](data/figures/block_size_speedup.png)
+![Block Sizes - MPKI Comparison](data/figures/block_size_mpki.png)
+![Non Inclusive Cache Hierarchy - Replacement Policy speedup comparison](data/figures/noninclusive_speedup.png)
+![Non Inclusive Cache Hierarchy - Replacement Policy mpki comparison](data/figures/noninclusive_mpki.png)
+![Inclusive Cache Hierarchy - Replacement Policy speedup comparison](data/figures/inclusive_speedup.png)
+![Inclusive Cache Hierarchy - Replacement Policy mpki comparison](data/figures/inclusive_mpki.png)
+![Exclusive Cache Hierarchy - Replacement Policy speedup comparison](data/figures/exclusive_speedup.png)
+![Exclusive Cache Hierarchy - Replacement Policy mpki comparison](data/figures/exclusive_mpki.png)
