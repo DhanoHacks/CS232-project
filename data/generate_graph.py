@@ -199,4 +199,4 @@ def plot_incl():
     plt.show()
     plt.close()
 
-plot_llc_size()
+plot_incl()
