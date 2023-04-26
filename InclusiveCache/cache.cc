@@ -1,6 +1,7 @@
 #include "cache.h"
 #include "set.h"
 
+//Implementing Inclusive cache hierarchy
 uint64_t l2pf_access = 0;
 
 void CACHE::back_invalidate(int cache_type ,uint64_t addr, int set, int way){
