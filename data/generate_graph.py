@@ -13,7 +13,7 @@ def plot_llc_size():
         size=llcsizes[i]
         for j in range(len(traces)):
             trace=traces[j]
-            with open(f"llc_size_{size}/{trace}-gshare-no-no-no-no-lru-1core.txt","r") as f:
+            with open(f"llc_size_change/llc_size_{size}/{trace}-gshare-no-no-no-no-lru-1core.txt","r") as f:
                 data = f.read()
             ipc = float(re.findall("CPU 0 cumulative IPC: [0-9\.]+",data)[0].split(" ")[-1])
             instructions = int(re.findall("CPU 0 cumulative IPC: [0-9\.]+ instructions: [0-9\.]+",data)[0].split(" ")[-1])
@@ -35,7 +35,7 @@ def plot_llc_size():
     plt.xlabel("Trace")
     plt.title("Speedup vs LLC SIZE for various trace")
     plt.legend()
-    plt.savefig("llc_sizes_speedup.png")
+    plt.savefig("figures/llc_sizes_speedup.png")
     plt.show()
     plt.close()
 
@@ -47,7 +47,7 @@ def plot_llc_size():
     plt.xlabel("Trace")
     plt.title("MPKI vs LLC SIZE for various trace")
     plt.legend()
-    plt.savefig("llc_sizes_mpki.png")
+    plt.savefig("figures/llc_sizes_mpki.png")
     plt.show()
     plt.close()
 
@@ -63,7 +63,7 @@ def plot_l2_size():
         size=l2sizes[i]
         for j in range(len(traces)):
             trace=traces[j]
-            with open(f"l2_size_{size}/{trace}-gshare-no-no-no-no-lru-1core.txt","r") as f:
+            with open(f"l2_size_change/l2_size_{size}/{trace}-gshare-no-no-no-no-lru-1core.txt","r") as f:
                 data = f.read()
             ipc = float(re.findall("CPU 0 cumulative IPC: [0-9\.]+",data)[0].split(" ")[-1])
             instructions = int(re.findall("CPU 0 cumulative IPC: [0-9\.]+ instructions: [0-9\.]+",data)[0].split(" ")[-1])
@@ -85,7 +85,7 @@ def plot_l2_size():
     plt.xlabel("Trace")
     plt.title("Speedup vs L2 SIZE for various trace")
     plt.legend()
-    plt.savefig("l2_sizes_speedup.png")
+    plt.savefig("figures/l2_sizes_speedup.png")
     plt.show()
     plt.close()
 
@@ -97,7 +97,7 @@ def plot_l2_size():
     plt.xlabel("Trace")
     plt.title("MPKI vs L2 SIZE for various trace")
     plt.legend()
-    plt.savefig("l2_sizes_mpki.png")
+    plt.savefig("figures/l2_sizes_mpki.png")
     plt.show()
     plt.close()
 
@@ -136,7 +136,7 @@ def plot_repl():
     plt.ylim((0.6,1.2))
     plt.title("Speedup vs Replacement Policy for various trace")
     plt.legend(loc='upper left')
-    plt.savefig("replacement_policies_speedup.png")
+    plt.savefig("figures/replacement_policies_speedup.png")
     plt.show()
     plt.close()
 
@@ -147,7 +147,7 @@ def plot_repl():
     plt.xlabel("Trace")
     plt.title("MPKI vs Replacement Policy for various trace")
     plt.legend()
-    plt.savefig("replacement_policies_mpki.png")
+    plt.savefig("figures/replacement_policies_mpki.png")
     plt.show()
     plt.close()
 
@@ -199,4 +199,55 @@ def plot_incl():
     plt.show()
     plt.close()
 
-plot_incl()
+# varying BLOCK SIZE
+def plot_block():
+    blocksizes=[64,32,16,8]
+    traces=['bfs','cc','sssp']
+    baselines=np.zeros(shape=(1,len(traces)))
+    speedups=np.zeros(shape=(len(traces),len(blocksizes)))
+    mpkis=np.zeros(shape=(len(traces),len(blocksizes)))
+    for i in range(len(blocksizes)):
+        blocksize=blocksizes[i]
+        for j in range(len(traces)):
+            trace=traces[j]
+            with open(f"block_size_change/{trace}_{blocksize}BytesBlock.txt","r") as f:
+                data = f.read()
+            ipc = float(re.findall("CPU 0 cumulative IPC: [0-9\.]+",data)[0].split(" ")[-1])
+            instructions = int(re.findall("CPU 0 cumulative IPC: [0-9\.]+ instructions: [0-9\.]+",data)[0].split(" ")[-1])
+            missrate_line = re.findall("LLC TOTAL .*",data)[0]
+            mpki = int(re.findall("MISS:[ ]*[0-9]+",missrate_line)[0].split(" ")[-1])/(instructions/1000)
+            if i==0:
+                baseline_ipc = ipc
+                baselines[0,j] = baseline_ipc
+            # print(ipc,baseline_ipc,baselines[0,j])
+            speedups[j,i] = ipc
+            mpkis[j,i] = mpki
+    for i in range(len(blocksizes)):
+        for j in range(len(traces)):
+            speedups[j,i] = speedups[j,i]/baselines[0,j]
+
+    x_axis = np.arange(len(traces))
+    plt.figure(figsize=(12,8))
+    for i in range(len(blocksizes)):
+        plt.bar(x_axis-0.3+0.2*i, speedups[:,i], 0.2, label=f"BLOCK SIZE={blocksizes[i]}")
+    plt.xticks(x_axis,traces)
+    plt.ylabel("Speedup")
+    plt.xlabel("Trace")
+    plt.title("Speedup vs Block Size for various traces")
+    plt.legend()
+    plt.savefig("figures/block_size_speedup.png")
+    plt.show()
+    plt.close()
+
+    for i in range(len(blocksizes)):
+        plt.bar(x_axis-0.3+0.2*i, mpkis[:,i], 0.2, label=f"BLOCK SIZE={blocksizes[i]}")
+    plt.xticks(x_axis,traces)
+    plt.ylabel("MPKI")
+    plt.xlabel("Trace")
+    plt.title("MPKI vs Block Size for various traces")
+    plt.legend()
+    plt.savefig("figures/block_size_mpki.png")
+    plt.show()
+    plt.close()
+
+plot_block()
