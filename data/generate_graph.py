@@ -156,7 +156,7 @@ def plot_repl(inclusivity):
 
 # varying CACHE INCLUSIVITY
 def plot_incl():
-    incs=["noninclusive","inclusive"]
+    incs=["NonInclusive","Inclusive","Exclusive"]
     traces=['bfs-14.trace.gz','cc-14.trace.gz','sssp-14.trace.gz']
     baselines=np.zeros(shape=(1,len(traces)))
     speedups=np.zeros(shape=(len(traces),len(incs)))
@@ -165,7 +165,7 @@ def plot_incl():
         inclusivity=incs[i]
         for j in range(len(traces)):
             trace=traces[j]
-            with open(f"{inclusivity}/{trace}-gshare-no-no-no-no-lru-1core.txt","r") as f:
+            with open(f"{inclusivity.lower()}/{trace}-gshare-no-no-no-no-lru-1core.txt","r") as f:
                 data = f.read()
             ipc = float(re.findall("CPU 0 cumulative IPC: [0-9\.]+",data)[0].split(" ")[-1])
             instructions = int(re.findall("CPU 0 cumulative IPC: [0-9\.]+ instructions: [0-9\.]+",data)[0].split(" ")[-1])
@@ -179,25 +179,27 @@ def plot_incl():
             mpkis[j,i] = mpki
 
     x_axis = np.arange(len(traces))
+    plt.figure(figsize=(12,8))
     for i in range(len(incs)):
-        plt.bar(x_axis-0.15+0.3*i, speedups[:,i], 0.3, label=incs[i])
+        plt.bar(x_axis-0.25+0.25*i, speedups[:,i], 0.25, label=incs[i])
     plt.xticks(x_axis,traces)
     plt.ylabel("Speedup")
     plt.xlabel("Trace")
-    plt.title("Speedup vs Inclusion Policy for various trace")
+    plt.title("Speedup vs Cache Inclusion Policy for various traces")
     plt.legend()
-    plt.savefig("inclusivity_speedup.png")
+    plt.savefig("figures/inclusivity_speedup.png")
     plt.show()
     plt.close()
 
+    plt.figure(figsize=(12,8))
     for i in range(len(incs)):
-        plt.bar(x_axis-0.15+0.3*i, mpkis[:,i], 0.3, label=incs[i])
+        plt.bar(x_axis-0.25+0.25*i, mpkis[:,i], 0.25, label=incs[i])
     plt.xticks(x_axis,traces)
     plt.ylabel("MPKI")
     plt.xlabel("Trace")
-    plt.title("MPKI vs Inclusion Policy for various trace")
+    plt.title("MPKI vs Cache Inclusion Policy for various traces")
     plt.legend()
-    plt.savefig("inclusivity_mpki.png")
+    plt.savefig("figures/inclusivity_mpki.png")
     plt.show()
     plt.close()
 
@@ -252,6 +254,7 @@ def plot_block():
     plt.show()
     plt.close()
 
-plot_repl("Inclusive")
-plot_repl("NonInclusive")
-plot_repl("Exclusive")
+# plot_repl("Inclusive")
+# plot_repl("NonInclusive")
+# plot_repl("Exclusive")
+plot_incl()
