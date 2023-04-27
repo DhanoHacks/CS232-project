@@ -16,5 +16,10 @@ Key Points:
 * Tested 0 size L2C and 0 size LLC caches by completely bypassing them
 * Replacement policies tested: lru, random, lfu, fifo, mru, drrip, srrip, ship
 * Inclusive, Exclusive and Noninclusive caches implemented and tested against all replacement policies
-  
+
+Best Results:
+* **BFS:** Non Inclusive, LLC Size = 0, L2C Size = 512 KB
+* **CC:** Non Inclusive, LLC Size = 8 MB, L2C Size = 0, LLC Replacement Policy = drrip
+* **SSSP:** Non Inclusive, LLC Size = 8 MB, L2C Size = 0, LLC Replacement Policy = lfu
+
 [results](results.md)
