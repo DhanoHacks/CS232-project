@@ -5,6 +5,7 @@ Members:
 * Mridul Agarwal (210050100)
 
 Description:
+Evaluated different cache hierarchies (different sizes of L1, L2, LLC,inclusive/non-inclusive/Exclusive) and cache replacement policies, compared with a baseline cache hierarchy, and improved cache performance.
 
 
 Usage:
@@ -25,26 +26,13 @@ Key Points:
 References:
 * [Analysis and Optimization of the Memory Hierarchy for Graph Processing Workloads​​](https://seal.ece.ucsb.edu/sites/default/files/publications/hpca-2019-abanti.pdf)
 
--Abanti Basak, Shuangchen Li, Xing Hu, Sang Min Oh, Xinfeng Xie, Li Zhao, Xiaowei Jiang, Yuan Xie
-
 * [Data-Aware Cache Management for Graph Analytics​](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9774709)
-
--Neelam Sharma, Varun Venkitaraman, Newton, Vikash Kumar, Shubham Singhania, Chandan Kumar Jha ​
 
 * [Graphfire: Synergizing Fetch, Insertion, and Replacement Policies for Graph Analytics​](https://mrmgroup.cs.princeton.edu/papers/amanocha-toc2022.pdf)
 
--Aninda Manocha, Student Member, IEEE, Juan L. Aragón, Member, IEEE, and Margaret Martonosi, Fellow, IEEE​
-
 * [Gretch: A Hardware Prefetcher for Graph Analytics​](https://www.cs.toronto.edu/ecosystem/papers/TACO_21/Gretch.pdf)
-
--ANIRUDH MOHAN KAUSHIK, GENNADY PEKHIMENKO, HIREN PATEL​
 
 * [Exploring Core and Cache Hierarchy Bottlenecks in Graph Processing Workloads​​](https://par.nsf.gov/servlets/purl/10080635)
 
--Abanti Basak , Xing Hu, Shuangchen Li, Sang Min Oh , and Yuan Xie
-
 * [EVALUATION OF CACHE INCLUSION POLICIES IN CACHE MANAGEMENT​​](https://core.ac.uk/download/pdf/147122148.pdf)
-
--A Thesis by LUNA BACKES DRAULT
-
 ​
