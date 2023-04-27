@@ -4,6 +4,8 @@ Members:
 * Adyasha Patra (210050007)
 * Mridul Agarwal (210050100)
 
+We used an earlier version of Champsim Simulator for this project : [ChampSim](https://github.com/ChampSim/ChampSim)
+
 Usage:
 * Move all relevant files for any metric you want to test for, to the relevant ChampSim folder
 * Put either bash script in ChampSim folder to generate bulk data
