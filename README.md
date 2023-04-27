@@ -4,6 +4,10 @@ Members:
 * Adyasha Patra (210050007)
 * Mridul Agarwal (210050100)
 
+Description:
+Evaluated different cache hierarchies (different sizes of L1, L2, LLC,inclusive/non-inclusive/Exclusive) and cache replacement policies, compared with a baseline cache hierarchy, and improved cache performance.
+
+
 Usage:
 * Move all relevant files for any metric you want to test for, to the relevant ChampSim folder
 * Put either bash script in ChampSim folder to generate bulk data
@@ -23,3 +27,17 @@ Best Results:
 * **SSSP:** Non Inclusive, LLC Size = 8 MB, L2C Size = 0, LLC Replacement Policy = lfu
 
 [results](results.md)
+
+References:
+* [Analysis and Optimization of the Memory Hierarchy for Graph Processing Workloads​​](https://seal.ece.ucsb.edu/sites/default/files/publications/hpca-2019-abanti.pdf)
+
+* [Data-Aware Cache Management for Graph Analytics​](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9774709)
+
+* [Graphfire: Synergizing Fetch, Insertion, and Replacement Policies for Graph Analytics​](https://mrmgroup.cs.princeton.edu/papers/amanocha-toc2022.pdf)
+
+* [Gretch: A Hardware Prefetcher for Graph Analytics​](https://www.cs.toronto.edu/ecosystem/papers/TACO_21/Gretch.pdf)
+
+* [Exploring Core and Cache Hierarchy Bottlenecks in Graph Processing Workloads​​](https://par.nsf.gov/servlets/purl/10080635)
+
+* [EVALUATION OF CACHE INCLUSION POLICIES IN CACHE MANAGEMENT​​](https://core.ac.uk/download/pdf/147122148.pdf)
+​
