@@ -256,8 +256,64 @@ def plot_block():
     plt.show()
     plt.close()
 
+def plot_best_result():
+    traces=['bfs-14.trace.gz','cc-14.trace.gz','sssp-14.trace.gz']
+    repl=['lru','drrip','lfu']
+    baselines=np.zeros(shape=(1,len(traces)))
+    speedups=np.zeros(shape=(len(traces),2))
+    mpkis=np.zeros(shape=(len(traces),2))
+    for j in range(len(traces)):
+        trace=traces[j]
+        with open(f"noninclusive/{trace}-gshare-no-no-no-no-lru-1core.txt","r") as f:
+            data = f.read()
+        ipc = float(re.findall("CPU 0 cumulative IPC: [0-9\.]+",data)[0].split(" ")[-1])
+        instructions = int(re.findall("CPU 0 cumulative IPC: [0-9\.]+ instructions: [0-9\.]+",data)[0].split(" ")[-1])
+        missrate_line = re.findall("LLC TOTAL .*",data)[0]
+        mpki = int(re.findall("MISS:[ ]*[0-9]+",missrate_line)[0].split(" ")[-1])/(instructions/1000)
+        baseline_ipc = ipc
+        baselines[0,j] = baseline_ipc
+        # print(ipc,baseline_ipc,baselines[0,j])
+        speedups[j,0] = ipc/baselines[0,j]
+        mpkis[j,0] = mpki
+    for j in range(len(traces)):
+        trace=traces[j]
+        with open(f"best_results/{trace}-gshare-no-no-no-no-{repl[j]}-1core.txt","r") as f:
+            data = f.read()
+        ipc = float(re.findall("CPU 0 cumulative IPC: [0-9\.]+",data)[0].split(" ")[-1])
+        instructions = int(re.findall("CPU 0 cumulative IPC: [0-9\.]+ instructions: [0-9\.]+",data)[0].split(" ")[-1])
+        missrate_line = re.findall("LLC TOTAL .*",data)[0]
+        mpki = int(re.findall("MISS:[ ]*[0-9]+",missrate_line)[0].split(" ")[-1])/(instructions/1000)
+        # print(ipc,baseline_ipc,baselines[0,j])
+        speedups[j,1] = ipc/baselines[0,j]
+        mpkis[j,1] = mpki
+    
+    x_axis = np.arange(len(traces))
+    plt.figure(figsize=(12,8))
+    plt.bar(x_axis-0.15, speedups[:,0], 0.3, label=f"BASELINE")
+    plt.bar(x_axis+0.15, speedups[:,1], 0.3, label=f"BEST")
+    plt.xticks(x_axis,traces)
+    plt.ylabel("Speedup")
+    plt.xlabel("Trace")
+    plt.title("Best cache hierarchy for various traces (speedup)")
+    plt.legend()
+    plt.savefig("figures/best_speedup.png")
+    plt.show()
+    plt.close()
+
+    plt.bar(x_axis-0.15, mpkis[:,0], 0.3, label=f"BASELINE")
+    plt.bar(x_axis+0.15, mpkis[:,1], 0.3, label=f"BEST")
+    plt.xticks(x_axis,traces)
+    plt.ylabel("MPKI")
+    plt.xlabel("Trace")
+    plt.title("Best cache hierarchy for various traces (MPKI)")
+    plt.legend()
+    plt.savefig("figures/best_mpki.png")
+    plt.show()
+    plt.close()
+
 # plot_repl("Inclusive")
 # plot_repl("NonInclusive")
 # plot_repl("Exclusive")
-plot_l2_size()
-plot_llc_size()
+# plot_l2_size()
+# plot_llc_size()
+plot_best_result()
