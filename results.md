@@ -13,3 +13,5 @@ Results:
 ![Exclusive Cache Hierarchy - Replacement Policy mpki comparison](data/figures/exclusive_mpki.png)
 ![Cache Inclusion Policy - Speedup comparison](data/figures/inclusivity_speedup.png)
 ![Cache Inclusion Policy - MPKI comparison](data/figures/inclusivity_mpki.png)
+![Best Cache Hierarchy for each trace - Speedup](data/figures/best_speedup.png)
+![Best Cache Hierarchy for each trace - MPKI](data/figures/best_mpki.png)
