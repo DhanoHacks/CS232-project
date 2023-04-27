@@ -5,6 +5,7 @@ import numpy as np
 # varying LLC SIZE
 def plot_llc_size():
     llcsizes=[2048,4096,8192,16384,0]
+    llc_sizes=[2,4,8,16,0]
     traces=['bfs-14.trace.gz','cc-14.trace.gz','sssp-14.trace.gz']
     baselines=np.zeros(shape=(1,len(traces)))
     speedups=np.zeros(shape=(len(traces),len(llcsizes)))
@@ -29,11 +30,11 @@ def plot_llc_size():
     x_axis = np.arange(len(traces))
     plt.figure(figsize=(12,8))
     for i in range(len(llcsizes)):
-        plt.bar(x_axis-0.3+0.15*i, speedups[:,i], 0.15, label=f"LLC SIZE = {llcsizes[i]}")
+        plt.bar(x_axis-0.3+0.15*i, speedups[:,i], 0.15, label=f"LLC SIZE = {llc_sizes[i]}")
     plt.xticks(x_axis,traces)
     plt.ylabel("Speedup")
     plt.xlabel("Trace")
-    plt.title("Speedup vs LLC SIZE for various trace")
+    plt.title("Speedup vs LLC SIZE (MB) for various trace")
     plt.legend()
     plt.savefig("figures/llc_sizes_speedup.png")
     plt.show()
@@ -41,11 +42,11 @@ def plot_llc_size():
 
     plt.figure(figsize=(12,8))
     for i in range(len(llcsizes)-1):
-        plt.bar(x_axis-0.3+0.2*i, mpkis[:,i], 0.2, label=f"LLC SIZE = {llcsizes[i]}")
+        plt.bar(x_axis-0.3+0.2*i, mpkis[:,i], 0.2, label=f"LLC SIZE = {llc_sizes[i]}")
     plt.xticks(x_axis,traces)
     plt.ylabel("MPKI")
     plt.xlabel("Trace")
-    plt.title("MPKI vs LLC SIZE for various trace")
+    plt.title("MPKI vs LLC SIZE (MB) for various trace")
     plt.legend()
     plt.savefig("figures/llc_sizes_mpki.png")
     plt.show()
@@ -55,6 +56,7 @@ def plot_llc_size():
 # varying L2 SIZE
 def plot_l2_size():
     l2sizes=[1024,2048,4096,8192,0]
+    l2_sizes=[0.5,1,2,4,0]
     traces=['bfs-14.trace.gz','cc-14.trace.gz','sssp-14.trace.gz']
     baselines=np.zeros(shape=(1,len(traces)))
     speedups=np.zeros(shape=(len(traces),len(l2sizes)))
@@ -79,11 +81,11 @@ def plot_l2_size():
     x_axis = np.arange(len(traces))
     plt.figure(figsize=(12,8))
     for i in range(len(l2sizes)):
-        plt.bar(x_axis-0.3+0.15*i, speedups[:,i], 0.15, label=f"L2 SIZE = {l2sizes[i]}")
+        plt.bar(x_axis-0.3+0.15*i, speedups[:,i], 0.15, label=f"L2 SIZE = {l2_sizes[i]}")
     plt.xticks(x_axis,traces)
     plt.ylabel("Speedup")
     plt.xlabel("Trace")
-    plt.title("Speedup vs L2 SIZE for various trace")
+    plt.title("Speedup vs L2 SIZE (MB) for various trace")
     plt.legend()
     plt.savefig("figures/l2_sizes_speedup.png")
     plt.show()
@@ -91,11 +93,11 @@ def plot_l2_size():
 
     plt.figure(figsize=(12,9))
     for i in range(len(l2sizes)-1):
-        plt.bar(x_axis-0.3+0.2*i, mpkis[:,i], 0.2, label=f"L2 SIZE = {l2sizes[i]}")
+        plt.bar(x_axis-0.3+0.2*i, mpkis[:,i], 0.2, label=f"L2 SIZE = {l2_sizes[i]}")
     plt.xticks(x_axis,traces)
     plt.ylabel("MPKI")
     plt.xlabel("Trace")
-    plt.title("MPKI vs L2 SIZE for various trace")
+    plt.title("MPKI vs L2 SIZE (MB) for various trace")
     plt.legend()
     plt.savefig("figures/l2_sizes_mpki.png")
     plt.show()
@@ -257,4 +259,5 @@ def plot_block():
 # plot_repl("Inclusive")
 # plot_repl("NonInclusive")
 # plot_repl("Exclusive")
-plot_incl()
+plot_l2_size()
+plot_llc_size()
